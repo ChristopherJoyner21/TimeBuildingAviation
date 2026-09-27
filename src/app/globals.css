@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  /* Time Building Aviation tokens — the new livery going on N601NT:
+     Indigo Sunset Blue Metallic with a gold pinstripe over black, on white. */
+  --ink: #17140f;
+  --ink-deep: #0d0b08;
+  --cream: #f7f4ec;
+  --cream-dim: #ece6d8;
+  --stone: #6b6255;
+  --stone-dim: #9c9284;
+  --indigo: #1e3a6b;
+  --indigo-bright: #2f5590;
+  --gold: #9c8542;
+  --gold-bright: #b89b52;
+  --charcoal: #201c16;
+
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-deep: var(--ink-deep);
+  --color-cream: var(--cream);
+  --color-cream-dim: var(--cream-dim);
+  --color-stone: var(--stone);
+  --color-stone-dim: var(--stone-dim);
+  --color-indigo: var(--indigo);
+  --color-indigo-bright: var(--indigo-bright);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-charcoal: var(--charcoal);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The stripe: N601NT's new pinstripe (indigo / gold / black), used as a
+   recurring divider instead of a plain hairline. */
+.stripe-rule {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    var(--indigo) 0%,
+    var(--indigo) 33%,
+    var(--gold) 33%,
+    var(--gold) 66%,
+    var(--charcoal) 66%,
+    var(--charcoal) 100%
+  );
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Justified (blocked) body copy — flush on both edges instead of a
+   ragged right edge. Headings, labels, and buttons are unaffected since
+   they aren't <p> elements. Left off below 640px: narrow columns don't
+   have enough words per line for justification to space evenly, so it
+   just produces uneven gaps. */
+@media (min-width: 640px) {
+  p {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
